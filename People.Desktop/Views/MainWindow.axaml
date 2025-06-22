@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:People.Desktop.ViewModels"
+        xmlns:m="using:People.Model"
+        
+        x:Class="People.Desktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        
+        Icon="/Assets/avalonia-logo.ico"
+        Title="People.Desktop">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <DataTemplate x:Key="TemplatePeopleItem"
+                      DataType="{x:Type m:Person}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding ShortId}"/>
+                <TextBlock Text="{Binding LastNameWithInitial}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <Button Content="Загрузить"
+                Command="{Binding LoadPeopleCommand}"
+                DockPanel.Dock="Top"/>
+        
+        <Grid ColumnDefinitions="*, 3*">
+            <ListBox ItemsSource="{Binding People}"
+                     SelectionMode="Single"
+                     SelectedItem="{Binding SelectedPerson}"
+                     ItemTemplate="{StaticResource TemplatePeopleItem}"
+                     Grid.Column="0"/>
+        
+            <StackPanel Orientation="Vertical"
+                        Grid.Column="1">
+                <Grid ColumnDefinitions="*, 2*">
+                    <Label Content="ID"
+                           Target="{Binding ElementName=InputId}"
+                           Grid.Column="0"/>
+                    <TextBox x:Name="InputId"
+                             Text="{Binding Id}"
+                             IsReadOnly="True"
+                             Grid.Column="1"/>
+                </Grid>
+            
+                <Grid ColumnDefinitions="*, 2*">
+                    <Label Content="Фамилия"
+                           Target="{Binding ElementName=InputLastName}"
+                           Grid.Column="0"/>
+                    <TextBox x:Name="InputLastName"
+                             Text="{Binding LastName}"
+                             Grid.Column="1"/>
+                </Grid>
+            
+                <Grid ColumnDefinitions="*, 2*">
+                    <Label Content="Имя"
+                           Target="{Binding ElementName=InputFirstName}"
+                           Grid.Column="0"/>
+                    <TextBox x:Name="InputFirstName"
+                             Text="{Binding FirstName}"
+                             Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

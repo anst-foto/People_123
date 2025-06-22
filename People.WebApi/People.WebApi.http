@@ -1,0 +1,6 @@
+@url = http://localhost:5064
+
+GET {{url}}/people
+Accept: application/json
+
+###
