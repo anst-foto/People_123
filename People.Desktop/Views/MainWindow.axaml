@@ -64,6 +64,15 @@
                              Text="{Binding FirstName}"
                              Grid.Column="1"/>
                 </Grid>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Сохранить"
+                            Command="{Binding SavePersonCommand}"/>
+                    <Button Content="Удалить"
+                            Command="{Binding DeletePersonCommand}"/>
+                    <Button Content="Очистить"
+                            Command="{Binding ClearPersonCommand}"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </DockPanel>

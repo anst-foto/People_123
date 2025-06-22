@@ -1,6 +1,42 @@
-@url = http://localhost:5064
+@url = http://localhost:5064/people
 
-GET {{url}}/people
+GET {{url}}/
 Accept: application/json
+
+###
+
+GET {{url}}/0ECE7820-BC9B-46FC-8607-83131C18CA47
+Accept: application/json
+
+###
+
+GET {{url}}/John
+Accept: application/json
+
+###
+
+POST {{url}}/
+Content-Type: application/json
+
+{
+"Id": "CF536792-0868-4809-B3F6-6F9E3D31511C",
+"LastName": "Starinin",
+"FirstName": "Andrey"
+}
+
+###
+
+PUT {{url}}/CF536792-0868-4809-B3F6-6F9E3D31511C
+Content-Type: application/json
+
+{
+"Id": "CF536792-0868-4809-B3F6-6F9E3D31511C",
+"LastName": "Smith",
+"FirstName": "Jan"
+}
+
+###
+
+DELETE {{url}}/CF536792-0868-4809-B3F6-6F9E3D31511C
 
 ###
